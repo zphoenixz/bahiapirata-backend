@@ -1,0 +1,12 @@
+server:
+  port: 8008
+
+spring:
+  application:
+    name: bahiapirata-backend
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5433:/bahiapirata_db
+    username: postgres
+    password: 12345678
+
