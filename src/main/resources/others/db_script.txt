@@ -1,0 +1,12 @@
+
+create table client(
+    client_id       SERIAL PRIMARY KEY,
+          first_name      VARCHAR(50) NOT NULL,
+          last_name       VARCHAR(50) NOT NULL,
+          birth_date      DATE NULL,
+          status          BOOLEAN NULL,
+          tx_id           INT4 NULL,
+          tx_date         DATE NULL,
+          tx_user_id      INT4 NULL,
+          tx_host         VARCHAR(50) NULL
+          );

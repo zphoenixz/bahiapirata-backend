@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>bo.edu.ucb.sis</groupId>
 	<artifactId>bahiapirata</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2</version>
 	<name>bahiapirata</name>
 	<description>Backend Project for Bahia Pirata platform</description>
 

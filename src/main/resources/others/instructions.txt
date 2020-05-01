@@ -1,0 +1,36 @@
+//docker run --name postgres-pirata -e POSTGRES_PASSWORD=12345678 -p 5433:5432 -d postgres
+//sudo docker ps
+
+docker start ca86
+
+//docker exec -it ca86 /bin/bash
+//su - postgres
+//psql
+
+// \d Listar tables
+// \l Listar BDs
+
+//\c bahiapirata_db
+//create database bahiapirata_db;
+// \c bahiapirata_db; conectarse a la BD
+// \d
+//Secuencia cada usuario tiene una unica
+//create sequence seq_client;
+//select nextval ('seq_client');
+//select nextval ('seq_client');
+
+// create table client( ...
+// \d client
+//exit
+//exit
+//logout
+
+
+
+//docker ps -a
+
+
+
+
+
+

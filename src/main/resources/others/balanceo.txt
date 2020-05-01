@@ -1,0 +1,67 @@
+//parte 2 ============================================
+
+./mvnw clean package
+cd target
+cambiar version del pom a 0.0.2
+cd ..
+./mvnw clean package
+./mvnw clean package spring-boot run //ignorar este no se ve bien
+
+
+======================================================================BALANCEO DE CARGA
+./mvnw clean package
+java -Dserver.port=8020 -jar target/bahiapirata-0.0.2.jar
+java -Dserver.port=8030 -jar target/bahiapirata-0.0.2.jar
+java -Dserver.port=8040 -jar target/bahiapirata-0.0.2.jar
+
+
+#================solo la primera vez
+docker run  --name nginx_load_balancer -d -p 80:80 nginx:1.17.3
+
+docker exec -it cb81 bash
+
+apt update
+apt install vim
+apt install iputils-ping
+apt install telnet
+
+ping host.docker.internal
+vim /etc/nginx/conf.d/bahiapirata.conf
+
+========
+upstream bahiapirata{
+    least_conn;
+    server host.docker.internal:8020;
+    server host.docker.internal:8030;
+    server host.docker.internal:8040;
+}
+server{
+    listen 80;
+    server_name bahiapirata.bo;
+    location / {
+        proxy_pass http://bahiapirata;
+    }
+
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+}
+
+:wq
+nginx -t
+exit
+
+docker stop cb81
+docker start cb81
+docker logs -f cb81
+sudo vi /etc/hosts
+añadir fila 127.0.0.1 bahiapirata.bo
+
+========
+
+#================ si no es la primera vez
+docker start
+docker exec -it c688 bash
+ping host.docker.internal
+telnet host.docker.internal
