@@ -1,11 +1,16 @@
 //docker run --name postgres-pirata -e POSTGRES_PASSWORD=12345678 -p 5433:5432 -d postgres
 //sudo docker ps
 
-docker start ca86
+docker start b400
 
-//docker exec -it ca86 /bin/bash
+//docker exec -it b400 /bin/bash
 //su - postgres
-//psql
+//psql template1
+
+hashear passwords
+select * from "user";
+update "user" set password = '6b9ffd71631dd64e1231ef41e138cd29b933c687073c1f72a66571998d9bd2a3' where user_id=4;
+
 
 // \d Listar tables
 // \l Listar BDs
