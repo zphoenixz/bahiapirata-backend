@@ -1,4 +1,4 @@
-/* User 1 es ADMIN con BUTTON_DELETE_ORDER y PAGE_USER_MANAGEMENT */
+/* User 1 es ADMIN con BUTTON_DELETE_ORDER, PAGE_ORDER_MANAGEMENT y PAGE_USER_MANAGEMENT */
 /* User 2 es WAREHOUSE_SUPERVISOR con BUTTON_DELETE_ORDER y PAGE_ORDER_MANAGEMENT */
 /* User 3 es WAREHOUSE_EMPLOYEE con PAGE_ORDER_MANAGEMENT */
 
@@ -8,16 +8,22 @@
 /*Usuarios 4 tiene la orden 1 con productos 1, 2, 3*/
 /*Usuarios 5 tiene la orden 2 con productos 4, 5, 6*/
 
+
+/*
+ sobre el estado del pediodo preguntar, si puedo aumentar una columna de estado
+ o al menos :::::
+ aumentar a la tabla orden un, shipped date, received date
+*/
 INSERT INTO "order"
-(provider_id, warehouse_id, order_user_id, date, status, address, tx_id, tx_username, tx_host,
+(provider_id, warehouse_id, order_user_id, order_date, order_status, status, address, tx_id, tx_username, tx_host,
  tx_date) VALUES
-(1, 1, 4, now(),1, 'Calacoto calle 5, Edificio Gloria, piso 5, apt 4', 1,
+(1, 1, 4, now(),'paid',1, 'Calacoto calle 5, Edificio Gloria, piso 5, apt 4', 1,
  'root', 'localhost', now());
 
 INSERT INTO "order"
-(provider_id, warehouse_id, order_user_id, date, status, address, tx_id, tx_username, tx_host,
+(provider_id, warehouse_id, order_user_id, order_date, order_status, status, address, tx_id, tx_username, tx_host,
  tx_date) VALUES
-(1, 1, 5, now(),1, 'Sopocachi, 6 de agosto, nro 4234', 1,
+(1, 1, 5, now(),'paid',1, 'Sopocachi, 6 de agosto, nro 4234', 1,
  'root', 'localhost', now());
 
 INSERT INTO "product_order"
@@ -56,7 +62,7 @@ INSERT INTO "product_order"
 (2, 6, 7, 3, 1, 1,
  'root', 'localhost', now());
 
-SELECT order_id, provider_id, warehouse_id, order_user_id, date FROM "order" WHERE status = 1;
+SELECT order_id, provider_id, warehouse_id, order_user_id, order_date FROM "order" WHERE status = 1;
 
 SELECT ord.order_id, ord.warehouse_id, ord.date,
        usr.user_id, usr.username, usr.email, usr.phone_number, usr.cat_user_status,
@@ -94,4 +100,3 @@ WHERE
   AND ord.status = 1
   AND prod.status = 1;
 
-SELECT jsonb_object_keys(product_description) FROM product;

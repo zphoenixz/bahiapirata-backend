@@ -9,17 +9,23 @@ public class OrderModel {
     private Integer warehouseId;
     private UserModel userOrder;
     private Timestamp orderDate;
+    private Timestamp preparedDate;
+    private Timestamp shippedDate;
+    private Timestamp deliveredDate;
+    private String orderStatus;
 
-    public OrderModel() {
-    }
 
-    public OrderModel(Integer orderId, String address, ProviderModel providerOrder, Integer warehouseId, UserModel userOrder, Timestamp orderDate) {
+    public OrderModel(Integer orderId, String address, ProviderModel providerOrder, Integer warehouseId, UserModel userOrder, Timestamp orderDate, Timestamp preparedDate, Timestamp shippedDate, Timestamp deliveredDate, String orderStatus) {
         this.orderId = orderId;
         this.address = address;
         this.providerOrder = providerOrder;
         this.warehouseId = warehouseId;
         this.userOrder = userOrder;
         this.orderDate = orderDate;
+        this.preparedDate = preparedDate;
+        this.shippedDate = shippedDate;
+        this.deliveredDate = deliveredDate;
+        this.orderStatus = orderStatus;
     }
 
     public Integer getOrderId() {
@@ -70,6 +76,38 @@ public class OrderModel {
         this.orderDate = orderDate;
     }
 
+    public Timestamp getShippedDate() {
+        return shippedDate;
+    }
+
+    public void setShippedDate(Timestamp shippedDate) {
+        this.shippedDate = shippedDate;
+    }
+
+    public Timestamp getPreparedDate() {
+        return preparedDate;
+    }
+
+    public void setPreparedDate(Timestamp preparedDate) {
+        this.preparedDate = preparedDate;
+    }
+
+    public Timestamp getDeliveredDate() {
+        return deliveredDate;
+    }
+
+    public void setDeliveredDate(Timestamp deliveredDate) {
+        this.deliveredDate = deliveredDate;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
     @Override
     public String toString() {
         return "OrderModel{" +
@@ -79,6 +117,10 @@ public class OrderModel {
                 ", warehouseId=" + warehouseId +
                 ", userOrder=" + userOrder +
                 ", orderDate=" + orderDate +
+                ", shippedDate=" + shippedDate +
+                ", preparedDate=" + preparedDate +
+                ", deliveredDate=" + deliveredDate +
+                ", orderStatus='" + orderStatus + '\'' +
                 '}';
     }
 }
