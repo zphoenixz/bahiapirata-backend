@@ -1,25 +1,24 @@
-// Variable {{authToken eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmZWF0dXJlcyI6WyJCVVRUT05fREVMRVRFX09SREVSIiwiUEFHRV9PUkRFUl9NQU5BR0VNRU5UIl0sInN1YiI6IjIiLCJpc3MiOiJQaXJhdGVCYXkiLCJ0eXBlIjoiQVVUSE4iLCJleHAiOjE1OTMyMTEyMjF9.u16fvNBtkdRvpwe3NDm59rP2pxTinvigzVNbVoiFKcg}}
 
 ###
 GET http://localhost:8008/api/v1/order/
-Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmZWF0dXJlcyI6WyJCVVRUT05fREVMRVRFX09SREVSIiwiUEFHRV9PUkRFUl9NQU5BR0VNRU5UIl0sInN1YiI6IjIiLCJpc3MiOiJQaXJhdGVCYXkiLCJ0eXBlIjoiQVVUSE4iLCJleHAiOjE1OTMxODgyNTB9.FVnSr3A6-8Zi8NcBRDRh9cEsgLZdq3oMQvHzvgY8ke0
+Authorization: bearer {{token}}
 Accept: application/json
 
 
 ###
 GET http://localhost:8008/api/v1/order/2
-Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmZWF0dXJlcyI6WyJCVVRUT05fREVMRVRFX09SREVSIiwiUEFHRV9PUkRFUl9NQU5BR0VNRU5UIl0sInN1YiI6IjIiLCJpc3MiOiJQaXJhdGVCYXkiLCJ0eXBlIjoiQVVUSE4iLCJleHAiOjE1OTMyMDUyNDR9.LtPFPZUcz-QeVA_v6axlbcWP-Qztu3UWhH0iOz8H_6I
+Authorization: bearer {{token}}
 Accept: application/json
 
 
 ###
 GET http://localhost:8008/api/v1/order/2/product
-Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmZWF0dXJlcyI6WyJCVVRUT05fREVMRVRFX09SREVSIiwiUEFHRV9PUkRFUl9NQU5BR0VNRU5UIl0sInN1YiI6IjIiLCJpc3MiOiJQaXJhdGVCYXkiLCJ0eXBlIjoiQVVUSE4iLCJleHAiOjE1OTMyMDUyNDR9.LtPFPZUcz-QeVA_v6axlbcWP-Qztu3UWhH0iOz8H_6I
+Authorization: bearer {{token}}
 Accept: application/json
 
 ###PATCH http://localhost:8008/api/v1/order/2/product/4
 PATCH http://localhost:8008/api/v1/order/3/product
-Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmZWF0dXJlcyI6WyJCVVRUT05fREVMRVRFX09SREVSIiwiUEFHRV9PUkRFUl9NQU5BR0VNRU5UIl0sInN1YiI6IjIiLCJpc3MiOiJQaXJhdGVCYXkiLCJ0eXBlIjoiQVVUSE4iLCJleHAiOjE1OTMxOTczNTB9.hqtXxZOFJlRthdaw7dz9WwWlztkiVQ4gm_geGpPYMRY
+Authorization: bearer {{ token }}
 Content-Type: application/json
 Accept: application/json
 
@@ -31,7 +30,7 @@ Accept: application/json
 
 ###
 PATCH http://localhost:8008/api/v1/order/3/product
-Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmZWF0dXJlcyI6WyJCVVRUT05fREVMRVRFX09SREVSIiwiUEFHRV9PUkRFUl9NQU5BR0VNRU5UIl0sInN1YiI6IjIiLCJpc3MiOiJQaXJhdGVCYXkiLCJ0eXBlIjoiQVVUSE4iLCJleHAiOjE1OTMyMTEyMjF9.u16fvNBtkdRvpwe3NDm59rP2pxTinvigzVNbVoiFKcg
+Authorization: bearer {{token}}
 Content-Type: application/json
 Accept: application/json
 
@@ -42,7 +41,7 @@ Accept: application/json
 }
 ###
 PATCH http://localhost:8008/api/v1/order/1
-Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmZWF0dXJlcyI6WyJCVVRUT05fREVMRVRFX09SREVSIiwiUEFHRV9PUkRFUl9NQU5BR0VNRU5UIl0sInN1YiI6IjIiLCJpc3MiOiJQaXJhdGVCYXkiLCJ0eXBlIjoiQVVUSE4iLCJleHAiOjE1OTMyMTEyMjF9.u16fvNBtkdRvpwe3NDm59rP2pxTinvigzVNbVoiFKcg
+Authorization: bearer {{token}}
 Content-Type: application/json
 Accept: application/json
 
