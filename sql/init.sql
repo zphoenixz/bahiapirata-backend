@@ -58,6 +58,16 @@ VALUES
    now()
 );
 
+INSERT INTO "user"
+( user_id, username, password, email, phone_number,
+  cat_user_status, status, tx_id, tx_username, tx_host,
+  tx_date)
+VALUES
+(  nextval('user_user_id_seq') , 'ajose', '12345678', 'ajose@gmail.com', '70655567',
+   'ACTIVE', 1, 1, 'root', 'localhost',
+   now()
+);
+
 INSERT INTO feature (feature_code, feature_name, status, tx_id, tx_username, tx_host, tx_date)
 VALUES ('PAGE_USER_MANAGEMENT', 'Gestión de usuarios', 1, 1, 'admin', 'localhost', now());
 /* PAGE_USER_MANAGEMENT */

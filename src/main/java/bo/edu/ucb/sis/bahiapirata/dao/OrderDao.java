@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderDao {
@@ -160,6 +162,104 @@ public class OrderDao {
                                     resultSet.getInt(10),
                                     resultSet.getInt(11),
                                     resultSet.getInt(12)
+                            );
+                        }
+                    });
+        } catch (Exception ex) {
+            System.out.println(ex);
+            throw new RuntimeException();
+        }
+        return result;
+    }
+
+    public ProductOrderModel updateProductOrder(Integer productOrderId, Integer qttyCommit, Integer qttyReceived, Integer userId) {
+        // Implmentamos SQL varible binding para evitar SQL INJECTION
+        System.out.println("updating product order in dao");
+        System.out.println(qttyReceived);
+        String query = "UPDATE \"product_order\" ord\n" +
+                "SET    qtty_commit = ?,\n" +
+                "        qtty_received = ?,\n" +
+                "        tx_id = usr.user_id,\n" +
+                "        tx_username = usr.username,\n" +
+                "        tx_host = 'local',\n" +
+                "        tx_date = now()\n" +
+                "FROM  \"user\" usr\n" +
+                "WHERE provider_product_id = ?\n" +
+                "    AND usr.user_id = ?" +
+                "    AND usr.status = 1\n" +
+                "    AND ord.status = 1\n" +
+                "RETURNING *";
+
+        ProductOrderModel result = null;
+
+        try {
+            result = jdbcTemplate.queryForObject(query,
+                    new Object [] {qttyCommit, qttyReceived, productOrderId, userId},
+                    new RowMapper<ProductOrderModel>() {
+                        @Override
+                        public ProductOrderModel mapRow(ResultSet resultSet, int i) throws SQLException {
+                            return new ProductOrderModel(
+                                    resultSet.getInt(1),
+                                    resultSet.getInt(2),
+                                    resultSet.getInt(3),
+                                    resultSet.getDouble(4),
+                                    resultSet.getInt(5),
+                                    resultSet.getInt(6),
+                                    resultSet.getInt(7)
+                            );
+                        }
+                    });
+        } catch (Exception ex) {
+            System.out.println(ex);
+            throw new RuntimeException();
+        }
+        return result;
+    }
+
+    public OrderModel updateOrder(String orderStatus, Integer orderId, Integer userId ) {
+        String aux_date = "";
+        if(orderStatus.compareTo( "prepared" ) == 0){
+            aux_date = "prepared_date";
+        }else if(orderStatus.compareTo( "shipped" ) == 0){
+            aux_date = "shipped_date";
+        }else if(orderStatus.compareTo( "delivered" ) == 0){
+            aux_date = "delivered_date";
+        }else{
+            return null;
+        }
+        // Implmentamos SQL varible binding para evitar SQL INJECTION
+        String query = "UPDATE \"order\" ord\n" +
+                "SET    order_status = ?,\n" +
+                "       "+aux_date+" = now(),\n" +
+                "       tx_id = usr.user_id,\n" +
+                "       tx_username = usr.username,\n" +
+                "       tx_host = 'local',\n" +
+                "       tx_date = now()\n" +
+                "FROM  \"user\" usr\n" +
+                "WHERE order_id = ?\n" +
+                "  AND usr.user_id = ?\n" +
+                "  AND usr.status = 1\n" +
+                "  AND ord.status = 1\n" +
+                "RETURNING *";
+
+        OrderModel result = null;
+        try {
+            result = jdbcTemplate.queryForObject(query,
+                    new Object [] {orderStatus, orderId, userId},
+                    new RowMapper<OrderModel>() {
+                        @Override
+                        public OrderModel mapRow(ResultSet resultSet, int i) throws SQLException {
+                            return new OrderModel(
+                                    resultSet.getInt(1),
+                                    resultSet.getString(5),
+                                    resultSet.getInt(2),
+                                    resultSet.getInt(3),
+                                    resultSet.getInt(4),
+                                    resultSet.getTimestamp(6),
+                                    resultSet.getTimestamp(7),
+                                    resultSet.getTimestamp(8),
+                                    resultSet.getTimestamp(9),
+                                    resultSet.getString(10)
                             );
                         }
                     });

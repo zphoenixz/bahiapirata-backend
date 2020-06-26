@@ -7,6 +7,9 @@
 
 /*Usuarios 4 tiene la orden 1 con productos 1, 2, 3*/
 /*Usuarios 5 tiene la orden 2 con productos 4, 5, 6*/
+/*Usuarios 5 tiene la orden 3 con productos 1*/
+/*Usuarios 6 tiene la orden 4 con productos 1*/
+/*Usuarios 7 tiene la orden 5 con productos 1*/
 
 
 /*
@@ -24,6 +27,24 @@ INSERT INTO "order"
 (provider_id, warehouse_id, order_user_id, order_date, order_status, status, address, tx_id, tx_username, tx_host,
  tx_date) VALUES
 (1, 1, 5, now(),'paid',1, 'Sopocachi, 6 de agosto, nro 4234', 1,
+ 'root', 'localhost', now());
+
+INSERT INTO "order"
+(provider_id, warehouse_id, order_user_id, order_date, prepared_date, order_status, status, address, tx_id, tx_username, tx_host,
+ tx_date) VALUES
+(1, 1, 5, now(), now(), 'prepared',1, 'Sopocachi, 6 de agosto, nro 4234', 1,
+ 'root', 'localhost', now());
+
+INSERT INTO "order"
+(provider_id, warehouse_id, order_user_id, order_date, prepared_date, shipped_date, order_status, status, address, tx_id, tx_username, tx_host,
+ tx_date) VALUES
+(1, 1, 6, now(), now(), now(), 'shipped',1, 'Sopocachi, 6 de agosto, nro 4234', 1,
+ 'root', 'localhost', now());
+
+INSERT INTO "order"
+(provider_id, warehouse_id, order_user_id, order_date, prepared_date, shipped_date, delivered_date, order_status, status, address, tx_id, tx_username, tx_host,
+ tx_date) VALUES
+(1, 1, 7, now(), now(), now(), now(), 'delivered',1, 'Sopocachi, 6 de agosto, nro 4234', 1,
  'root', 'localhost', now());
 
 INSERT INTO "product_order"
@@ -60,6 +81,24 @@ INSERT INTO "product_order"
 (order_id, product_id, unit_price, qtty_requested, status, tx_id, tx_username, tx_host,
  tx_date) VALUES
 (2, 6, 7, 3, 1, 1,
+ 'root', 'localhost', now());
+
+INSERT INTO "product_order"
+(order_id, product_id, unit_price, qtty_requested, status, tx_id, tx_username, tx_host,
+ tx_date) VALUES
+(3, 1, 7, 1, 1, 1,
+ 'root', 'localhost', now());
+
+INSERT INTO "product_order"
+(order_id, product_id, unit_price, qtty_requested, status, tx_id, tx_username, tx_host,
+ tx_date) VALUES
+(4, 1, 7, 1, 1, 1,
+ 'root', 'localhost', now());
+
+INSERT INTO "product_order"
+(order_id, product_id, unit_price, qtty_requested, status, tx_id, tx_username, tx_host,
+ tx_date) VALUES
+(5, 1, 7, 1, 1, 1,
  'root', 'localhost', now());
 
 SELECT order_id, provider_id, warehouse_id, order_user_id, order_date FROM "order" WHERE status = 1;
@@ -100,3 +139,33 @@ WHERE
   AND ord.status = 1
   AND prod.status = 1;
 
+/*int productOrderId, int qttyCommit, int qttyReceived, int idUsuario*/
+UPDATE "product_order"
+SET    qtty_commit = 1,
+        qtty_received = 1,
+        tx_id = usr.user_id,
+        tx_username = usr.username,
+        tx_host = 'local',
+        tx_date = now()
+FROM  "user" usr
+WHERE provider_product_id = 7
+    AND usr.user_id = 1
+RETURNING *;
+
+UPDATE "order" ord
+SET    order_status = 'prepared',
+       prepared_date = now(),
+       shipped_date = null,
+       delivered_date = null,
+       tx_id = usr.user_id,
+       tx_username = usr.username,
+       tx_host = 'local',
+       tx_date = now()
+FROM  "user" usr
+WHERE order_id = 3
+  AND usr.user_id = 2
+RETURNING *;
+
+
+select * from "order";
+select * from "product_order";

@@ -6,14 +6,32 @@ public class OrderModel {
     private Integer orderId;
     private String address;
     private ProviderModel providerOrder;
+    private Integer providerId;
     private Integer warehouseId;
     private UserModel userOrder;
+    private Integer userId;
     private Timestamp orderDate;
     private Timestamp preparedDate;
     private Timestamp shippedDate;
     private Timestamp deliveredDate;
     private String orderStatus;
 
+    public OrderModel(){
+
+    }
+
+    public OrderModel(Integer orderId, String address, Integer providerId, Integer warehouseId, Integer userId, Timestamp orderDate, Timestamp preparedDate, Timestamp shippedDate, Timestamp deliveredDate, String orderStatus) {
+        this.orderId = orderId;
+        this.address = address;
+        this.providerId = providerId;
+        this.warehouseId = warehouseId;
+        this.userId = userId;
+        this.orderDate = orderDate;
+        this.preparedDate = preparedDate;
+        this.shippedDate = shippedDate;
+        this.deliveredDate = deliveredDate;
+        this.orderStatus = orderStatus;
+    }
 
     public OrderModel(Integer orderId, String address, ProviderModel providerOrder, Integer warehouseId, UserModel userOrder, Timestamp orderDate, Timestamp preparedDate, Timestamp shippedDate, Timestamp deliveredDate, String orderStatus) {
         this.orderId = orderId;
@@ -52,6 +70,14 @@ public class OrderModel {
         this.providerOrder = providerOrder;
     }
 
+    public Integer getProviderId() {
+        return providerId;
+    }
+
+    public void setProviderId(Integer providerId) {
+        this.providerId = providerId;
+    }
+
     public Integer getWarehouseId() {
         return warehouseId;
     }
@@ -68,6 +94,14 @@ public class OrderModel {
         this.userOrder = userOrder;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     public Timestamp getOrderDate() {
         return orderDate;
     }
@@ -76,20 +110,20 @@ public class OrderModel {
         this.orderDate = orderDate;
     }
 
-    public Timestamp getShippedDate() {
-        return shippedDate;
-    }
-
-    public void setShippedDate(Timestamp shippedDate) {
-        this.shippedDate = shippedDate;
-    }
-
     public Timestamp getPreparedDate() {
         return preparedDate;
     }
 
     public void setPreparedDate(Timestamp preparedDate) {
         this.preparedDate = preparedDate;
+    }
+
+    public Timestamp getShippedDate() {
+        return shippedDate;
+    }
+
+    public void setShippedDate(Timestamp shippedDate) {
+        this.shippedDate = shippedDate;
     }
 
     public Timestamp getDeliveredDate() {
@@ -114,11 +148,13 @@ public class OrderModel {
                 "orderId=" + orderId +
                 ", address='" + address + '\'' +
                 ", providerOrder=" + providerOrder +
+                ", providerId=" + providerId +
                 ", warehouseId=" + warehouseId +
                 ", userOrder=" + userOrder +
+                ", userId=" + userId +
                 ", orderDate=" + orderDate +
-                ", shippedDate=" + shippedDate +
                 ", preparedDate=" + preparedDate +
+                ", shippedDate=" + shippedDate +
                 ", deliveredDate=" + deliveredDate +
                 ", orderStatus='" + orderStatus + '\'' +
                 '}';
