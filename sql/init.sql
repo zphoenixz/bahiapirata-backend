@@ -128,7 +128,7 @@ FROM
     JOIN role_feature rfe ON rfe.role_id = rle.role_id
     JOIN feature fea ON fea.feature_id = rfe.feature_id
 WHERE
-    usr.user_id = 1
+    usr.user_id = 2
     AND usr.status = 1
     AND uro.status = 1
     AND rle.status = 1

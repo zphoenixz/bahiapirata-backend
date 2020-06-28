@@ -1,9 +1,9 @@
 //docker run --name postgres-pirata -e POSTGRES_PASSWORD=12345678 -p 5433:5432 -d postgres
 //sudo docker ps
 
-docker start b5dd
+docker start 6b0b
 
-//docker exec -it b5dd /bin/bash
+//docker exec -it 6b0b /bin/bash
 //su - postgres
 //psql template1
 

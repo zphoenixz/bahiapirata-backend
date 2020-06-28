@@ -12,12 +12,21 @@ Accept: application/json
 
 
 ###
-GET http://localhost:8008/api/v1/order/2/product
+GET http://localhost:8008/api/v1/order/1/product
 Authorization: bearer {{token}}
 Accept: application/json
 
+
+
+
+
+
+
+
+
+
 ###PATCH http://localhost:8008/api/v1/order/2/product/4
-PATCH http://localhost:8008/api/v1/order/3/product
+PATCH http://localhost:8008/api/v1/order/2/product
 Authorization: bearer {{ token }}
 Content-Type: application/json
 Accept: application/json
@@ -29,15 +38,15 @@ Accept: application/json
 }
 
 ###
-PATCH http://localhost:8008/api/v1/order/3/product
+PATCH http://localhost:8008/api/v1/order/2/product
 Authorization: bearer {{token}}
 Content-Type: application/json
 Accept: application/json
 
 {
-  "productOrderId": 7,
-  "qttyCommit": 1,
-  "qttyReceived": 1
+  "productOrderId": 1,
+  "qttyCommit": null,
+  "qttyReceived": null
 }
 ###
 PATCH http://localhost:8008/api/v1/order/1

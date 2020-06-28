@@ -30,21 +30,21 @@ INSERT INTO "order"
  'root', 'localhost', now());
 
 INSERT INTO "order"
-(provider_id, warehouse_id, order_user_id, order_date, prepared_date, order_status, status, address, tx_id, tx_username, tx_host,
+(provider_id, warehouse_id, order_user_id, order_date, order_status, status, address, tx_id, tx_username, tx_host,
  tx_date) VALUES
-(1, 1, 5, now(), now(), 'prepared',1, 'Sopocachi, 6 de agosto, nro 4234', 1,
+(1, 1, 5, now(), 'paid',1, 'Sopocachi, 6 de agosto, nro 4234', 1,
  'root', 'localhost', now());
 
 INSERT INTO "order"
-(provider_id, warehouse_id, order_user_id, order_date, prepared_date, shipped_date, order_status, status, address, tx_id, tx_username, tx_host,
+(provider_id, warehouse_id, order_user_id, order_date, order_status, status, address, tx_id, tx_username, tx_host,
  tx_date) VALUES
-(1, 1, 6, now(), now(), now(), 'shipped',1, 'Sopocachi, 6 de agosto, nro 4234', 1,
+(1, 1, 6, now(), 'paid',1, 'Sopocachi, 6 de agosto, nro 4234', 1,
  'root', 'localhost', now());
 
 INSERT INTO "order"
-(provider_id, warehouse_id, order_user_id, order_date, prepared_date, shipped_date, delivered_date, order_status, status, address, tx_id, tx_username, tx_host,
+(provider_id, warehouse_id, order_user_id, order_date, order_status, status, address, tx_id, tx_username, tx_host,
  tx_date) VALUES
-(1, 1, 7, now(), now(), now(), now(), 'delivered',1, 'Sopocachi, 6 de agosto, nro 4234', 1,
+(1, 1, 7, now(), 'paid',1, 'Sopocachi, 6 de agosto, nro 4234', 1,
  'root', 'localhost', now());
 
 INSERT INTO "product_order"

@@ -174,8 +174,7 @@ public class OrderDao {
 
     public ProductOrderModel updateProductOrder(Integer productOrderId, Integer qttyCommit, Integer qttyReceived, Integer userId) {
         // Implmentamos SQL varible binding para evitar SQL INJECTION
-        System.out.println("updating product order in dao");
-        System.out.println(qttyReceived);
+
         String query = "UPDATE \"product_order\" ord\n" +
                 "SET    qtty_commit = ?,\n" +
                 "        qtty_received = ?,\n" +
