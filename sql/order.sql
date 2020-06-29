@@ -162,10 +162,34 @@ SET    order_status = 'prepared',
        tx_host = 'local',
        tx_date = now()
 FROM  "user" usr
-WHERE order_id = 3
+WHERE order_id = 1
   AND usr.user_id = 2
 RETURNING *;
 
+UPDATE "order" ord
+SET    order_status = 'prepared',
+       tx_id = usr.user_id,
+       tx_username = usr.username,
+       tx_host = 'local',
+       tx_date = now()
+FROM  "user" usr
+WHERE order_id = 1
+  AND usr.user_id = 2
+  AND ord.status = 1
+RETURNING *;
+
+UPDATE "order" ord
+SET    status = 0,
+       tx_id = usr.user_id,
+       tx_username = usr.username,
+       tx_host = 'local',
+       tx_date = now()
+FROM  "user" usr
+WHERE order_id = 1
+  AND usr.user_id = 2
+  AND ord.status = 1
+  AND usr.status = 1
+RETURNING *;
 
 select * from "order";
 select * from "product_order";

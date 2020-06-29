@@ -268,4 +268,48 @@ public class OrderDao {
         }
         return result;
     }
+
+    public OrderModel deleteOrder(Integer orderId, Integer userId ) {
+
+        // Implmentamos SQL varible binding para evitar SQL INJECTION
+        String query = "UPDATE \"order\" ord\n" +
+                "SET    status = 0,\n" +
+                "       tx_id = usr.user_id,\n" +
+                "       tx_username = usr.username,\n" +
+                "       tx_host = 'local',\n" +
+                "       tx_date = now()\n" +
+                "FROM  \"user\" usr\n" +
+                "WHERE order_id = ?\n" +
+                "  AND usr.user_id = ?\n" +
+                "  AND usr.status = 1\n" +
+                "  AND ord.status = 1\n" +
+                "RETURNING *";
+
+        OrderModel result = null;
+        try {
+            result = jdbcTemplate.queryForObject(query,
+                    new Object [] {orderId, userId},
+                    new RowMapper<OrderModel>() {
+                        @Override
+                        public OrderModel mapRow(ResultSet resultSet, int i) throws SQLException {
+                            return new OrderModel(
+                                    resultSet.getInt(1),
+                                    resultSet.getString(5),
+                                    resultSet.getInt(2),
+                                    resultSet.getInt(3),
+                                    resultSet.getInt(4),
+                                    resultSet.getTimestamp(6),
+                                    resultSet.getTimestamp(7),
+                                    resultSet.getTimestamp(8),
+                                    resultSet.getTimestamp(9),
+                                    resultSet.getString(10)
+                            );
+                        }
+                    });
+        } catch (Exception ex) {
+            System.out.println(ex);
+            throw new RuntimeException();
+        }
+        return result;
+    }
 }

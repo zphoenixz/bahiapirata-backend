@@ -39,4 +39,8 @@ public class OrderBl {
     public OrderModel updateOrder(String orderStatus, Integer orderId, Integer userId ) {
         return this.orderDao.updateOrder(orderStatus, orderId, userId);
     }
+
+    public OrderModel deleteOrder(Integer orderId, Integer userId) {
+        return this.orderDao.deleteOrder(orderId, userId);
+    }
 }

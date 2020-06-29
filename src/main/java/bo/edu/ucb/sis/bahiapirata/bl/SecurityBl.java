@@ -51,7 +51,7 @@ public class SecurityBl {
         Integer userId = userDao.findUserIdByUsernameAndPassword(username, sha256hex);
         if (userId != null ) {
             result.put("authentication", generateJWT(userId, 1, "AUTHN", userDao.findAllFeatureCodeByUserId(userId)));
-            result.put("refresh", generateJWT(userId, 100, "REFRESH", null));
+            result.put("refresh", generateJWT(userId, 2, "REFRESH", null));
             return result;
         } else {
             return null;
@@ -78,7 +78,7 @@ public class SecurityBl {
         Map<String, String> result = new HashMap<>();
         Integer userIdAsInt = Integer.parseInt(idUsuario);
         result.put("authentication", generateJWT(userIdAsInt, 1, "AUTHN", userDao.findAllFeatureCodeByUserId(userIdAsInt)));
-        result.put("refresh", generateJWT(userIdAsInt, 100, "REFRESH", null));
+        result.put("refresh", generateJWT(userIdAsInt, 2, "REFRESH", null));
         System.out.println("refrescando token");
         return result;
     }

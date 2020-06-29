@@ -151,4 +151,25 @@ public class OrderController {
 
         return new ResponseEntity<>( this.orderBl.updateOrder(orderModel.getOrderStatus(), orderId, userId), HttpStatus.OK);
     }
+
+    @RequestMapping(value = "{orderId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<OrderModel> deleteOrder(@RequestHeader("Authorization") String authorization, @PathVariable("orderId") int orderId) {
+        String tokenJwT = authorization.substring(7);
+        System.out.println("borrar orden por id");
+        DecodedJWT decodedJWT = JWT.decode(tokenJwT);
+        int userId = Integer.parseInt(decodedJWT.getSubject());
+
+
+        if(!"AUTHN".equals(decodedJWT.getClaim("type").asString()) ) {
+            throw new RuntimeException("El token proporcionado no es un token de Autenthication");
+        }
+        // El siguiente código valida si el token es bueno y ademas es un token de authentication
+        Algorithm algorithm = Algorithm.HMAC256(secretJwt);
+        JWTVerifier verifier = JWT.require(algorithm)
+                .withIssuer("PirateBay")
+                .build();
+        verifier.verify(tokenJwT);
+
+        return new ResponseEntity<>( this.orderBl.deleteOrder(orderId, userId), HttpStatus.OK);
+    }
 }
